@@ -9,14 +9,14 @@ import java.util.Map;
 @RestController
 public class JWKController {
 
-    private final JWKSet jwkSet;
+    private final Map<String, Object> jwkJson;
 
     public JWKController(JWKSet jwkSet) {
-        this.jwkSet = jwkSet;
+        this.jwkJson = jwkSet.toJSONObject(true);
     }
 
     @GetMapping("/jwk")
     Map<String, Object> jwk() {
-        return jwkSet.toJSONObject(true);
+        return jwkJson;
     }
 }
